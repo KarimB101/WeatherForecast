@@ -9,6 +9,7 @@
   rel="stylesheet" 
   integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
   crossorigin="anonymous">
+  <style src="style.css"></style>
 </head>
 
 <body>
@@ -30,24 +31,20 @@
   </div>
 
   <div class="container-fluid">
-    <section
-      id="today"
-      class="mt-3"
-      role="region"
-      aria-live="polite"
-    ></section>
-    <section
-      id="forecast"
-      class="row mt-3"
-      role="region"
-      aria-live="polite"
-    ></section>
-    <section
-      id="history"
-      class="row mt-3"
-      role="region"
-      aria-live="polite"
-    ></section>
+    <section id="history" class="mt-3" role="region" aria-live="polite"> 
+      <h3> Cities Searched</h3>
+    </section>
+    <section id="today" class="mt-3" role="region" aria-live="polite"> 
+      <h3> Current Weather</h3>
+    </section>
+    <section id="forecast" class="mt-3" role="region" aria-live="polite"> 
+      <h3> 5 Day Forecast</h3>
+      <span id="Day1" class="">Day1</span>
+      <span id="Day2" class="">Day2</span>
+      <span id="Day3" class="">Day3</span>
+      <span id="Day4" class="">Day4</span>
+      <span id="Day5" class="">Day5</span>
+    </section>
   </div>  
 <!-- day.js to format dates -->
   <script

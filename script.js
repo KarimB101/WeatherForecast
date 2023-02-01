@@ -37,21 +37,30 @@ function getWeather() {
             // console.log(data.main.temp)
             // console.log(data.wind.speed)
             // console.log(data.main.humidity)
+            // tags for html elements
             var today = document.querySelector('#today') 
+            var history = document.querySelector('#history') 
+            var Day1 = document.querySelector('#Day1') 
+            var Day2 = document.querySelector('#Day2') 
+            var Day3 = document.querySelector('#Day3') 
+            var Day4 = document.querySelector('#Day4') 
+            var Day5 = document.querySelector('#Day5')
+            // create elements to add to html when data pulled  
             var pTemp = document.createElement('p')
             var pWind = document.createElement('p')
             var pHumid = document.createElement('p')
             var cityName = document.createElement('h2')
-
+            // append current weather data
             today.appendChild(pTemp)
             today.appendChild(pWind)
             today.appendChild(pHumid)
-            today.appendChild(cityName)
+            
+            history.appendChild(cityName)
             
             // convert temp from Kelvin to Fahrenheit F = 1.8*(K-273) + 32.
             // displaying data on html page
             var pTempF = 1.8*(Number(data.main.temp) -273) + 32
-            pTempF = Math.round(pTempF *10 )/10
+            pTempF = Math.round(pTempF)
             pTemp.textContent = pTempF + " " + "°F"
             pWind.textContent = data.wind.speed + " " + "mph"
             pHumid.textContent = data.main.humidity + " " + "%"
@@ -79,7 +88,7 @@ function getWeather() {
                 .then(response => response.json()) 
                 .then(data => {
                     console.log(data.list[0].wind.speed)
-                    console.log(data.list[0].main.temp)
+                    console.log(Math.round(1.8*((data.list[0].main.temp)-273)+32))
                     console.log(data.list[0].main.humidity)
                     console.dir(data)
 
@@ -111,38 +120,38 @@ function getWeather() {
             var day5Humid = document.createElement('p')
         
             // append children to forecast Element
-            forecastContainer.appendChild(day1Temp) 
-            forecastContainer.appendChild(day2Temp)
-            forecastContainer.appendChild(day3Temp)
-            forecastContainer.appendChild(day4Temp)
-            forecastContainer.appendChild(day5Temp)
-            forecastContainer.appendChild(day1Wind)
-            forecastContainer.appendChild(day2Wind)
-            forecastContainer.appendChild(day3Wind)
-            forecastContainer.appendChild(day4Wind)
-            forecastContainer.appendChild(day5Wind)
-            forecastContainer.appendChild(day1Humid)
-            forecastContainer.appendChild(day2Humid)
-            forecastContainer.appendChild(day3Humid)
-            forecastContainer.appendChild(day4Humid)
-            forecastContainer.appendChild(day5Humid)
+            Day1.appendChild(day1Temp) //Day1
+            Day1.appendChild(day1Humid)
+            Day1.appendChild(day1Wind)
+            Day2.appendChild(day2Temp) //day2
+            Day2.appendChild(day2Wind)
+            Day2.appendChild(day2Humid)
+            Day3.appendChild(day3Temp) // day3
+            Day3.appendChild(day3Wind)
+            Day3.appendChild(day3Humid)
+            Day4.appendChild(day4Temp) //day4
+            Day4.appendChild(day4Wind)
+            Day4.appendChild(day4Humid)
+            Day5.appendChild(day5Wind) //day5
+            Day5.appendChild(day5Temp)
+            Day5.appendChild(day5Humid)
             // var forecastTemp = [day1Temp, day2Temp, day3Temp, day4Temp, day5Temp]
         //     forecastTemp = 1.8*(Number(data.list[8].main.temp) -273) + 32
         //     forecastTemp = Math.round(forecastTemp *10 )/10 
                 console.log(day1Temp)
 
-        // display data to html
-            day1Temp.innerHTML = data.list[8].main.temp + " °F";
-            day2Temp.innerHTML = data.list[15].main.temp + " °F";
-            day3Temp.innerHTML = data.list[21].main.temp + " °F";
-            day4Temp.innerHTML = data.list[33].main.temp + " °F";
-            day5Temp.innerHTML = data.list[39].main.temp + " °F";
-            day1Wind.innerHTML = data.list[8].wind.speed + " mph"
+        // display data to html                                     //first temp
+            day1Temp.innerHTML = Math.round(1.8*((data.list[8].main.temp)-273)+32) + " °F";
+            day2Temp.innerHTML = Math.round(1.8*((data.list[15].main.temp)-273)+32) + " °F";
+            day3Temp.innerHTML = Math.round(1.8*((data.list[21].main.temp)-273)+32) + " °F";
+            day4Temp.innerHTML = Math.round(1.8*((data.list[33].main.temp)-273)+32) + " °F";
+            day5Temp.innerHTML = Math.round(1.8*((data.list[39].main.temp)-273)+32) + " °F";
+            day1Wind.innerHTML = data.list[8].wind.speed + " mph"  //wind speeds
             day2Wind.innerHTML = data.list[15].wind.speed + " mph"
             day3Wind.innerHTML = data.list[21].wind.speed + " mph"
             day4Wind.innerHTML = data.list[33].wind.speed + " mph"
             day5Wind.innerHTML = data.list[39].wind.speed + " mph"
-            day1Humid.innerHTML = data.list[8].main.humidity + " %"
+            day1Humid.innerHTML = data.list[8].main.humidity + " %"  //humidities
             day2Humid.innerHTML = data.list[15].main.humidity + " %"
             day3Humid.innerHTML = data.list[21].main.humidity + " %"
             day4Humid.innerHTML = data.list[33].main.humidity + " %"
