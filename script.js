@@ -16,17 +16,7 @@ var searchHistoryContainer = document.querySelector('#history');
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
-// Function to display the current weather
-function renderCurrentWeather(city, weather) {
-    var date = dayjs().format('M/D/YYYY');
-    // Store response data from our fetch request in variables
-    var tempF = weather.main.temp;
-    var windMph = weather.wind.speed;
-    var humidity = weather.main.humidity;
-    var iconUrl = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
-    var iconDescription = weather.weather[0].description || weather[0].main;
-}
-
+// function to display current weather and 5 day forecast
 function getWeather() {
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c171672f4bbc8048bf259a3ea61decb1"
     console.log(queryURL)
