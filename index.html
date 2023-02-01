@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Forecast</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+  rel="stylesheet" 
+  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+  crossorigin="anonymous">
+</head>
+
+<body>
+  <header
+    class="container text-center text-bg-yellow bg-blue p-2 weather-header">
+    <h1>Weather Forecast</h1>
+  </header>
+
+  <div class="grid text-center"> 
+    <form action="" method="get" class="form">
+    <div class="city-form">
+      <label for="name " >Enter city name: </label>
+      <input type="text" name="name" id="city" required>
+      <button id="searchBtn">Pull Weather</button>
+    </div>
+    <!-- <div class="form">
+      <input type="submit" value="Pull Weather">
+    </div> -->
+  </div>
+
+  <div class="container-fluid">
+    <section
+      id="today"
+      class="mt-3"
+      role="region"
+      aria-live="polite"
+    ></section>
+    <section
+      id="forecast"
+      class="row mt-3"
+      role="region"
+      aria-live="polite"
+    ></section>
+    <section
+      id="history"
+      class="row mt-3"
+      role="region"
+      aria-live="polite"
+    ></section>
+  </div>  
+<!-- day.js to format dates -->
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+      integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+      crossorigin="anonymous"
+    ></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" 
+      integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" 
+      crossorigin="anonymous"
+    ></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" 
+      integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" 
+      crossorigin="anonymous"
+    ></script>
+</body>
+
+<script src="script.js" rel="scriptsheet"></script>
