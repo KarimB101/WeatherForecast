@@ -3,6 +3,7 @@ var WeatherKey = "c171672f4bbc8048bf259a3ea61decb1"
 var city;
 var cityInput = document.querySelector('#city')
 var searchBtn = document.querySelector('#searchBtn')
+var cityHistory = document.querySelector('.city-list')
 
 
 // DOM elements 
@@ -44,7 +45,8 @@ function getWeather() {
             today.appendChild(pTemp)
             today.appendChild(pWind)
             today.appendChild(pHumid)
-            
+
+            // history list searched
             history.appendChild(cityName)
             
             // convert temp from Kelvin to Fahrenheit F = 1.8*(K-273) + 32.
@@ -54,7 +56,11 @@ function getWeather() {
             pTemp.textContent = pTempF + " " + "°F"
             pWind.textContent = data.wind.speed + " " + "mph"
             pHumid.textContent = data.main.humidity + " " + "%"
-            cityName.textContent = city
+            // cityName.textContent = city
+
+            // add class to city name
+            cityName.className = "city-searched"
+
 
 
             
@@ -63,7 +69,7 @@ function getWeather() {
                 today.appendChild(pWind)
                 today.appendChild(pHumid) 
             // storing data in local storage
-
+                // localStorage.setItem(cityInput.value)
                 localStorage.setItem(city + "-" + "tempF", pTempF)
                 localStorage.setItem(city + "-" + "windMph", data.wind.speed)
                 localStorage.setItem(city + "-" + "humidity", data.main.humidity)
@@ -77,10 +83,10 @@ function getWeather() {
             fetch(forecastURL)
                 .then(response => response.json()) 
                 .then(data => {
-                    console.log(data.list[0].wind.speed)
-                    console.log(Math.round(1.8*((data.list[0].main.temp)-273)+32))
-                    console.log(data.list[0].main.humidity)
-                    console.dir(data)
+                    // console.log(data.list[0].wind.speed)
+                    // console.log(Math.round(1.8*((data.list[0].main.temp)-273)+32))
+                    // console.log(data.list[0].main.humidity)
+                    // console.dir(data)
 
                      // Create object that stores all 3-hour forecasts
                     const allForecasts = {};
@@ -152,10 +158,21 @@ function getWeather() {
                 })
             })
     }
+    var cityList = JSON.parse(localStorage.getItem("CityList")) || [];
 
+           function dataStorage(){
 
-                        
-    
+        
+    }               
+    function loadCities(){
+        cityHistory.textContent = ""
+        cityList.forEach(function(cityValue) {
+          var cityH2 =  document.createElement('h2')
+          cityH2.textContent = cityValue
+          cityHistory.appendChild(cityH2) 
+        //   create click event to recall function to pull cities
+        })
+    }
       
         
         // keeps data on page
@@ -163,11 +180,23 @@ function getWeather() {
     event.preventDefault();
 
     city = cityInput.value;
+    if (cityList.indexOf(city) == -1){
+        cityList.push(city);
+        // local storage for city list
+        localStorage.setItem("CityList", JSON.stringify(cityList));
+
+    }
+    loadCities()
+        
+    // city data put inside an object
+    //          var CurrentWeatherData = { "City Name": cityInput, 
+    //    "CurrentTemp": pTemp,
+    //    "Current Wind Speed": pWind,
+    //    "Current Humidity": pHumid,};
+    //     console.log(JSON.parse(CurrentWeatherData));
+
 
     getWeather();
-    })
+})
 
-    // function for displaying search history
-    function renderSearchHistory() {
-        searchHistoryContainer.innerHTML = '';
-    };
+    loadCities();
