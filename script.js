@@ -30,28 +30,30 @@ function getWeather() {
             // console.log(data.main.humidity)
 
             // tags for html elements
-            var today = document.querySelector('#today') 
-            today.textContent = 'CURRENT WEATHER'
+            var weather = document.querySelector('#weatherdata') 
             var history = document.querySelector('#history') 
             var Day1 = document.querySelector('#Day1') 
-            Day1.textContent = 'Day 1'
             var Day2 = document.querySelector('#Day2') 
-            Day2.textContent = 'Day 2'
             var Day3 = document.querySelector('#Day3') 
-            Day3.textContent = 'Day 3'
             var Day4 = document.querySelector('#Day4') 
-            Day4.textContent = 'Day 4'
             var Day5 = document.querySelector('#Day5')
-            Day5.textContent = 'Day 5'
             // create elements to add to html when data pulled  
             var pTemp = document.createElement('p')
             var pWind = document.createElement('p')
             var pHumid = document.createElement('p')
             var cityName = document.createElement('h2')
             // append current weather data
-            today.appendChild(pTemp)
-            today.appendChild(pWind)
-            today.appendChild(pHumid)
+            weather.appendChild(pTemp)
+            weather.appendChild(pWind)
+            weather.appendChild(pHumid)
+            // refresh data for new cities
+            Day1.textContent = 'Day 1'
+            Day2.textContent = 'Day 2'
+            Day3.textContent = 'Day 3'
+            Day4.textContent = 'Day 4'
+            Day5.textContent = 'Day 5'
+            weather.textContent = ""
+            
 
             // history list searched
             history.appendChild(cityName)
@@ -81,6 +83,7 @@ function getWeather() {
                 localStorage.setItem(city + "-" + "windMph", data.wind.speed)
                 localStorage.setItem(city + "-" + "humidity", data.main.humidity)
             })
+            
           
             // function to get 5 day weather forecast 
             // function getForecast(){
